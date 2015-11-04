@@ -19,10 +19,10 @@ import javax.swing.JPanel;
 public class Board {
 	private JFrame _jf;
 	private JFrame _jf2;
+	private JFrame _jf3;
 	private JPanel _jp;
 	private JPanel _jp2;
-	// private JButton _jb2;
-	// private JPanel _jp2;
+	private JPanel _jp3;
 	private int[] _buttons;
 	public String _ImageAddress;
 	public int blk = 0;
@@ -31,6 +31,16 @@ public class Board {
 	// randomly drawn tiles
 	JButton _jb2 = new JButton("Draw Tile");
 	JButton exit_bt = new JButton(); // add tile button to window 2
+	 JButton _jb3 = new JButton("1");
+	 JButton exit_bt2 = new JButton(); // add tile button to window 3
+	 JButton _jb4 = new JButton("2");
+	 JButton exit_bt3 = new JButton(); // add tile button to window 3
+	 JButton _jb5 = new JButton("3");
+	 JButton exit_bt4 = new JButton(); // add tile button to window 3
+	 JButton _jb6 = new JButton("4");
+	 JButton exit_bt5 = new JButton(); // add tile button to window 3
+	 JButton _jb7 = new JButton("5");
+	 JButton exit_bt6 = new JButton(); // add tile button to window 3
 	public boolean marker = false;
 
 	public static void main(String[] args) {
@@ -105,7 +115,123 @@ public class Board {
 				}
 			}
 		});
-	}// end of draw button action
+		 // "Draw meeple1" button
+		  _jb3.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e) {
+		    _ImageAddress = ""; // reset _ImageAddress variable
+		    exit_bt2.setIcon(new ImageIcon(""));
+		    int j3 = nextInt((5 - 1) + 1) + 1; // //black meeple
+		    // System.out.println("Block Number: " + j);
+		    System.out.println("Meeple number: " + j3);
+		    _ImageAddress = getMeeple(j3); 
+		          
+		    if (true) // check if something present in _ImageAddress
+		    {
+		     try
+		     {
+		      Image img_of_drawn_meeple = ImageIO.read(getClass()
+		        .getResource(_ImageAddress)); 
+		      exit_bt2.setIcon(new ImageIcon(img_of_drawn_meeple));
+		     }
+		     catch (IOException ex) {
+		     }
+		    }
+		   }
+		  });
+		  //"draw meeple2" button
+		  _jb4.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e) {
+		    _ImageAddress = ""; // reset _ImageAddress variable
+		    exit_bt3.setIcon(new ImageIcon(""));
+		    int j4 = nextInt((5 - 1) + 1) + 2; // blue meeple
+		    // System.out.println("Block Number: " + j);
+		    System.out.println("Meeple number: " + j4);
+		    _ImageAddress = getMeeple(j4);
+		    if (true) // check if something present in _ImageAddress
+		    {
+		     try
+		     {
+		      Image img_of_drawn_meeple = ImageIO.read(getClass()
+		        .getResource(_ImageAddress));
+		      exit_bt3.setIcon(new ImageIcon(img_of_drawn_meeple));
+		     }
+		     catch (IOException ex) {
+		     }
+		    }
+		   }
+		  });
+		  // "draw meeple3" button
+		  _jb5.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e) {
+		    _ImageAddress = ""; // reset _ImageAddress variable
+		    exit_bt4.setIcon(new ImageIcon(""));
+		    int j4 = nextInt((5 - 1) + 1) + 3; // green meeple
+		    // System.out.println("Block Number: " + j);
+		    System.out.println("Meeple number: " + j4);
+		    _ImageAddress = getMeeple(j4);
+		    if (true) // check if something present in _ImageAddress
+		    {
+		     try
+		     {
+		      Image img_of_drawn_meeple = ImageIO.read(getClass()
+		        .getResource(_ImageAddress));
+		      exit_bt4.setIcon(new ImageIcon(img_of_drawn_meeple));
+		     }
+		     catch (IOException ex) {
+		     }
+		    }
+		   }
+		  });
+		  //"draw meeple4" button
+		  _jb6.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e) {
+		    _ImageAddress = ""; // reset _ImageAddress variable
+		    exit_bt5.setIcon(new ImageIcon(""));
+		    int j6 = nextInt((5 - 1) + 1) + 4; // red meeple
+		    // System.out.println("Block Number: " + j);
+		    System.out.println("Meeple number: " + j6);
+		    _ImageAddress = getMeeple(j6);
+		    if (true) // check if something present in _ImageAddress
+		    {
+		     try
+		     {
+		      
+		      Image img_of_drawn_meeple = ImageIO.read(getClass()
+		        .getResource(_ImageAddress));
+		      exit_bt5.setIcon(new ImageIcon(img_of_drawn_meeple));
+		     }
+		     catch (IOException ex) {
+		     }
+		    }
+		   }
+		  });
+		  //"draw meeple5" button
+		  _jb7.addActionListener(new ActionListener() {
+		   public void actionPerformed(ActionEvent e) {
+		    _ImageAddress = ""; // reset _ImageAddress variable
+		    exit_bt6.setIcon(new ImageIcon(""));
+		    int j7 = nextInt((5 - 1) + 1) + 5; // yellow meeple
+		    // System.out.println("Block Number: " + j);
+		    System.out.println("Meeple number: " + j7);
+		    _ImageAddress = getMeeple(j7);
+		    if (true) // check if something present in _ImageAddress
+		    {
+		     try
+		     {
+		      Image img_of_drawn_meeple = ImageIO.read(getClass()
+		        .getResource(_ImageAddress));
+		      exit_bt6.setIcon(new ImageIcon(img_of_drawn_meeple));
+		     }
+		     catch (IOException ex) {
+		     }
+		    }
+		   }
+		  });
+		 }// end of draw button action
+	protected int nextInt(int i) {
+		return 0;
+	}
+// end of draw button action
 	public void callSelectBlock(int block_no)
 	{
 		final int blk = block_no;
@@ -1361,17 +1487,50 @@ public class Board {
 		}
 		return ret;
 	} // end of getTile()
+	  public String getMeeple(int index) // return address of given tile index
+	  {
+	   String meep = "";
+	   switch (index)
+	   {
+	   case 1:
+	    meep = "/images/meeple1.jpg";
+	    break;
+	   case 2:
+	    meep = "/images/meeple2.jpg";
+	    break;
+	   case 3:
+	    meep = "/images/meeple3.jpg";
+	    break;
+	   case 4:
+	    meep = "/images/meeple4.jpg";
+	    break;
+	   case 5:
+	    meep = "/images/meeple5.jpg";
+	    break;
+	   }
+	   return meep;
+	 } // end of getmeeple()
 	public Board()
 	{
 		JFrame _jf = new JFrame("Carcassone"); // window frame
 		JFrame _jf2 = new JFrame(""); // window2 frame
+		JFrame _jf3 = new JFrame(""); //window3 frame
 		JPanel _jp = new JPanel();
-		JPanel _jp2 = new JPanel(); // Jpanel for window 2
+		JPanel _jp2 = new JPanel(); // JPanel for window 2
+		JPanel _jp3 = new JPanel(); // JPanel for window3
 		_jp2.add(_jb2); // add jb2 button to jp2 jPanel 2
+		  _jp3.add(_jb3); //  add jb3 to jp3 
+		  _jp3.add(_jb4); //  add jb3 to jp3 
+		  _jp3.add(_jb5); //  add jb3 to jp3 
+		  _jp3.add(_jb6); //  add jb3 to jp3 
+		  _jp3.add(_jb7); //  add jb3 to jp3 
+		  Dimension d3 = new Dimension(); // dimension on window 3
+		  d3.setSize(250, 400); // 900, 800
 		Dimension d2 = new Dimension(); // dimension on window 2
 		d2.setSize(250, 250); // 900, 800
 		Dimension d = new Dimension(); // dimension for window 1
 		d.setSize(770, 800); // 900, 800
+		_jf3.setSize(d3);
 		_jf2.setSize(d2); // set size of jframe
 		_jf.setSize(d); // window size
 		// JButton [] jb = new JButton[72];
@@ -1420,6 +1579,7 @@ public class Board {
 		_jp.setLayout(new GridLayout(9, 8)); // 9 rows and 8 columns -> panel
 		// layout
 		_jp2.setLayout(new GridLayout(2, 1)); // layout of panel 2 in window 2
+		 _jp3.setLayout(new GridLayout(2,5)); // layout of panel 3 in window 3
 		/*
 		 * 
 		 * //add tile to viewer
@@ -1451,6 +1611,11 @@ public class Board {
 		 * }
 		 */
 		_jp2.add(exit_bt);
+		 _jp3.add(exit_bt2);
+		 _jp3.add(exit_bt3);
+		 _jp3.add(exit_bt4);
+		 _jp3.add(exit_bt5);
+		 _jp3.add(exit_bt6);
 		// end of tile to viewer
 		_jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_jf.add(_jp); // add panel to frame
@@ -1460,6 +1625,11 @@ public class Board {
 		_jf2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_jf2.add(_jp2); // add panel to frame
 		_jf2.setVisible(true); // set window visible
+		  //window 3
+		  _jf3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		  _jf3.add(_jp3); // add panel to frame
+		  _jf3.setVisible(true); // set window visible
+		  _jf3.setLocation(1120, 00);
 	} // end of constructor Board()
 	public void setTile(int idx, int tile_no)
 	{
@@ -1633,5 +1803,3 @@ public class Board {
 		return (block_index);
 	} // end of callBlockCoordinates
 } // end of class
-
-
