@@ -1,0 +1,245 @@
+package Stage2;
+
+import java.awt.Image;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
+public class Tile {
+	public String _rc;
+	public String _r3way;
+	public String _rangld;
+	public String _rangled2;
+	public String _halfr;
+	public String _4wayr;
+	public String _cwhole;
+	public String _c3qtr;
+	public String _cityhalfdiag;
+	public String _ce;
+	public String _cesplit;
+	public String _ceadj;
+	public String _chourglass;
+	public String _field;
+	public String _shiled;
+	// public void Tile(){
+	// }
+	// three private strings
+	// containing road across, city edge, and field
+	public String tile1() {
+		String tile = "";
+		String road = new String("_rc");
+		String city = new String("_ce");
+		String field = new String("_field");
+		tile = tile + road + city + field;
+		// return tile = tile.valueOf(field+city+road);
+		return tile;
+	}
+	// tile contains road3way, city edge, and field
+	public String tile2() {
+		String tile = "";
+		String road = new String("_r3way");
+		String city = new String("_ce");
+		String field = new String("_field");
+		tile = tile + road + city + field;
+		return tile;
+	}
+	// tile contains road angled, city half diagonal, and field
+	public String tile3() {
+		String tile = "";
+		String road = new String("_rangld");
+		String city = new String("_cityhalfdiag");
+		String field = new String("_field");
+		tile = tile + road + city + field;
+		return tile;
+	}
+	// tile contains half road, city3quaters, and field
+	public String tile4() {
+		String tile = "";
+		String road = new String("_halfr");
+		String city = new String("_c3qtr");
+		String field = new String("_field");
+		tile = tile + road + city + field;
+		return tile;
+	}
+	// tiles that only contain two private variables
+	// tile contains road across and field
+	public String tile5() {
+		String tile = "";
+		String road = new String("_rc");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile containing city edge and field
+	public String tile6() {
+		String tile = "";
+		String road = new String("_ce");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile contains city three quarter and field
+	public String tile7() {
+		String tile = "";
+		String road = new String("_c3qtr");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile contains road angled and filed
+	public String tile8() {
+		String tile = "";
+		String road = new String("_rangld");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile contain half road field
+	public String tile9() {
+		String tile = "";
+		String road = new String("_halfr");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile contains city half diagonal and field
+	public String tile10() {
+		String tile = "";
+		String road = new String("_cityhalfdiag");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile contains city hour glass and field
+	public String tile11() {
+		String tile = "";
+		String road = new String("_chourglass");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile contains road three way and field
+	public String tile12() {
+		String tile = "";
+		String road = new String("_r3way");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile contains city edge adjacent and field
+	public String tile13() {
+		String tile = "";
+		String road = new String("_ceadj");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile contains city edge split and field
+	public String tile14() {
+		String tile = "";
+		String road = new String("_cesplit");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tile contains four way road and field
+	public String tile15() {
+		String tile = "";
+		String road = new String("_4wayr");
+		String field = new String("_field");
+		tile = tile + road + field;
+		return tile;
+	}
+	// tiles that contain 1 private variable
+	//whole city always contains shield and whole city
+	public String tile16() {
+		String tile = "";
+		String field = new String("_cwhole");
+		String shield = new String("_shield");
+		tile = tile + field+shield;
+		return tile;
+	}
+	// tile contains only field
+
+	public String tile17() {
+		String tile = "";
+		String field = new String("_field");
+		tile = tile + field;
+		return tile;
+	}
+	//(tiles that contain shield)
+	//tile contains field, city half diagonal, and shield
+	public String tile18() {
+		String tile = "";
+		String field = new String("_field");
+		String shield = new String("_shield");
+		String city = new String("_chalfdiag");
+		tile = tile + field + city + shield;
+		return tile;
+
+	}
+	//tile contains field, city half diagonal, half road, and shield
+	public String tile19() {
+		String tile = "";
+		String field = new String("_field");
+		String city = new String("_chalfdiag");
+		String road = new String("_halfr");
+		String shield = new String("_shield");
+		tile = tile + field + city + road + shield;
+		return tile;
+
+	}
+	//tile contains field, city three quarters, and shield
+	public String tile20() {
+		String tile = "";
+		String field = new String("_field");
+		String city = new String("_c3qtr");
+		String shield = new String("_shield");
+		tile = tile + field + city + shield;
+		return tile;
+
+	}
+	//tile contains field, city three quarters, half road, and shield
+	public String tile21() {
+		String tile = "";
+		String field = new String("_field");
+		String city = new String("_c3qtr");
+		String road = new String("_halfr");
+		String shield = new String("_shield");
+		tile = tile + field + city + road + shield;
+		return tile;
+
+	}
+	//tile contains field, city hour glass, and shield
+	public String tile22() {
+		String tile = "";
+		String field = new String("_field");
+		String city = new String("_chourglass");
+		String shield = new String("_shield");
+		tile = tile + field + city + shield;
+		return tile;
+
+	}
+	//ones we forgot to add in till after the other tiles were made
+	//tile contains field, city edge, and road angled
+	public String tile23() {
+		String tile = "";
+		String field = new String("_field");
+		String city = new String("_ce");
+		String road = new String("_rangled");
+		tile = tile + field + city +road;
+		return tile;
+
+	}
+	//tile contains field, city angled, and road angled 2
+	public String tile24() {
+		String tile = "";
+		String field = new String("_field");
+		String city = new String("_ce");
+		String road = new String("_rangled2");
+		tile = tile + field + city +road;
+		return tile;
+
+	}
+}
