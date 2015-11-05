@@ -1,82 +1,64 @@
 package Stage2;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image; //insert image
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
 import javax.imageio.ImageIO; //read image
 import javax.swing.ImageIcon; //image icon
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 
 public class Board {
 	private JFrame _jf;
 	private JFrame _jf2;
-	private JFrame _jf3;
 	private JPanel _jp;
 	private JPanel _jp2;
 	private JPanel _jp3;
 	private int[] _buttons;
+	private static String _p;
+	static int counter=-1;
 	public String _ImageAddress;
 	public int blk = 0;
+	private static final int _jp3_w = 230;
+	private static final int _jp3_h = 390;
 	ArrayList<JButton> jb = new ArrayList();
 	public static ArrayList<Integer> FillCheck = new ArrayList();
 	// randomly drawn tiles
-	JButton _jb2 = new JButton("Draw Tile");
+	static JButton _jb2 = new JButton("Draw Tile");
 	JButton exit_bt = new JButton(); // add tile button to window 2
-	 JButton _jb3 = new JButton("1");
-	 JButton exit_bt2 = new JButton(); // add tile button to window 3
-	 JButton _jb4 = new JButton("2");
-	 JButton exit_bt3 = new JButton(); // add tile button to window 3
-	 JButton _jb5 = new JButton("3");
-	 JButton exit_bt4 = new JButton(); // add tile button to window 3
-	 JButton _jb6 = new JButton("4");
-	 JButton exit_bt5 = new JButton(); // add tile button to window 3
-	 JButton _jb7 = new JButton("5");
-	 JButton exit_bt6 = new JButton(); // add tile button to window 3
 	public boolean marker = false;
 
 	public static void main(String[] args) {
-		Board Board;
+	    Board Board;
 		Board = new Board();
-		/*
-		 * 
-		 * Random generator = new Random();
-		 * 
-		 * int j = generator.nextInt(45);
-		 * 
-		 * Random generator2 = new Random();
-		 * 
-		 * int j2 = generator.nextInt(24);
-		 */
-		// Board.setTile(35,1);
-		// randomly tile in random block in gameboard
-		// call method()
-		// System.out.println(Board.getTile(9));
-		// System.out.println("Block: " + Board.callBlockCoordinate(0,0));
-		// Board.drawTile(0, 0);
-		Board.drawTile(Board.callBlockCoordinate(0, 0), 1);
-		FillCheck.add(Board.callBlockCoordinate(0, 0));
+		Board.drawTile(Board.callBlockCoordinate(3, 3), 1);
+		FillCheck.add(Board.callBlockCoordinate(3, 3));
 		Board.callDrawAction();
 		Board.callSelectBlockIndex();
-		// Board.drawTile(j,j2); //put tile number j2 in block j
-		// 1. put tile on window 2 block
-		// 2. put drawn tile on 35th block
-		/*
-		 * 
-		 * for (int i=0; i<args.length; i++) {
-		 * 
-		 * System.out.println("args["+i+"] is \""+args[i]+"\".");
-		 * 
-		 * }
-		 */
+		_jb2.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+			if(counter>args.length-2){
+				counter = -1;
+			}
+			counter++;
+				_p =args[counter];
+				_jb2.setText(_p);
+			}});
 	}
 	// draw button
 	public void callDrawAction() // change tile to the drawn tile
@@ -115,119 +97,7 @@ public class Board {
 				}
 			}
 		});
-		 // "Draw meeple1" button
-		  _jb3.addActionListener(new ActionListener() {
-		   public void actionPerformed(ActionEvent e) {
-		    _ImageAddress = ""; // reset _ImageAddress variable
-		    exit_bt2.setIcon(new ImageIcon(""));
-		    int j3 = nextInt((5 - 1) + 1) + 1; // //black meeple
-		    // System.out.println("Block Number: " + j);
-		    System.out.println("Meeple number: " + j3);
-		    _ImageAddress = getMeeple(j3); 
-		          
-		    if (true) // check if something present in _ImageAddress
-		    {
-		     try
-		     {
-		      Image img_of_drawn_meeple = ImageIO.read(getClass()
-		        .getResource(_ImageAddress)); 
-		      exit_bt2.setIcon(new ImageIcon(img_of_drawn_meeple));
-		     }
-		     catch (IOException ex) {
-		     }
-		    }
-		   }
-		  });
-		  //"draw meeple2" button
-		  _jb4.addActionListener(new ActionListener() {
-		   public void actionPerformed(ActionEvent e) {
-		    _ImageAddress = ""; // reset _ImageAddress variable
-		    exit_bt3.setIcon(new ImageIcon(""));
-		    int j4 = nextInt((5 - 1) + 1) + 2; // blue meeple
-		    // System.out.println("Block Number: " + j);
-		    System.out.println("Meeple number: " + j4);
-		    _ImageAddress = getMeeple(j4);
-		    if (true) // check if something present in _ImageAddress
-		    {
-		     try
-		     {
-		      Image img_of_drawn_meeple = ImageIO.read(getClass()
-		        .getResource(_ImageAddress));
-		      exit_bt3.setIcon(new ImageIcon(img_of_drawn_meeple));
-		     }
-		     catch (IOException ex) {
-		     }
-		    }
-		   }
-		  });
-		  // "draw meeple3" button
-		  _jb5.addActionListener(new ActionListener() {
-		   public void actionPerformed(ActionEvent e) {
-		    _ImageAddress = ""; // reset _ImageAddress variable
-		    exit_bt4.setIcon(new ImageIcon(""));
-		    int j4 = nextInt((5 - 1) + 1) + 3; // green meeple
-		    // System.out.println("Block Number: " + j);
-		    System.out.println("Meeple number: " + j4);
-		    _ImageAddress = getMeeple(j4);
-		    if (true) // check if something present in _ImageAddress
-		    {
-		     try
-		     {
-		      Image img_of_drawn_meeple = ImageIO.read(getClass()
-		        .getResource(_ImageAddress));
-		      exit_bt4.setIcon(new ImageIcon(img_of_drawn_meeple));
-		     }
-		     catch (IOException ex) {
-		     }
-		    }
-		   }
-		  });
-		  //"draw meeple4" button
-		  _jb6.addActionListener(new ActionListener() {
-		   public void actionPerformed(ActionEvent e) {
-		    _ImageAddress = ""; // reset _ImageAddress variable
-		    exit_bt5.setIcon(new ImageIcon(""));
-		    int j6 = nextInt((5 - 1) + 1) + 4; // red meeple
-		    // System.out.println("Block Number: " + j);
-		    System.out.println("Meeple number: " + j6);
-		    _ImageAddress = getMeeple(j6);
-		    if (true) // check if something present in _ImageAddress
-		    {
-		     try
-		     {
-		      
-		      Image img_of_drawn_meeple = ImageIO.read(getClass()
-		        .getResource(_ImageAddress));
-		      exit_bt5.setIcon(new ImageIcon(img_of_drawn_meeple));
-		     }
-		     catch (IOException ex) {
-		     }
-		    }
-		   }
-		  });
-		  //"draw meeple5" button
-		  _jb7.addActionListener(new ActionListener() {
-		   public void actionPerformed(ActionEvent e) {
-		    _ImageAddress = ""; // reset _ImageAddress variable
-		    exit_bt6.setIcon(new ImageIcon(""));
-		    int j7 = nextInt((5 - 1) + 1) + 5; // yellow meeple
-		    // System.out.println("Block Number: " + j);
-		    System.out.println("Meeple number: " + j7);
-		    _ImageAddress = getMeeple(j7);
-		    if (true) // check if something present in _ImageAddress
-		    {
-		     try
-		     {
-		      Image img_of_drawn_meeple = ImageIO.read(getClass()
-		        .getResource(_ImageAddress));
-		      exit_bt6.setIcon(new ImageIcon(img_of_drawn_meeple));
-		     }
-		     catch (IOException ex) {
-		     }
-		    }
-		   }
-		  });
-		 }// end of draw button action
+	}
 	protected int nextInt(int i) {
 		return 0;
 	}
@@ -265,11 +135,7 @@ public class Board {
 			y2 = yp + 1;
 			if (FillCheck.contains(callBlockCoordinate(x2, y2)) == true)
 				return true;
-		/*	x3 = xp + 1; // corner
-			y3 = yp + 1;
-			if (FillCheck.contains(callBlockCoordinate(x3, y3)) == true)
-				return true;
-		*/}
+		}
 		else if (xp == 7 && yp == 0) // check for top right corner
 		{
 			x1 = xp - 1; // left
@@ -280,11 +146,7 @@ public class Board {
 			y2 = yp + 1;
 			if (FillCheck.contains(callBlockCoordinate(x2, y2)) == true)
 				return true;
-		/*	x3 = xp - 1; // corner
-			y3 = yp + 1;
-			if (FillCheck.contains(callBlockCoordinate(x3, y3)) == true)
-				return true;
-		*/}
+		}
 		else if (xp == 0 && yp == 8) // check for bottom left corner
 		{
 			x1 = xp + 1; // right
@@ -295,11 +157,7 @@ public class Board {
 			y2 = yp - 1;
 			if (FillCheck.contains(callBlockCoordinate(x2, y2)) == true)
 				return true;
-		/*	x3 = xp + 1; // corner
-			y3 = yp - 1;
-			if (FillCheck.contains(callBlockCoordinate(x3, y3)) == true)
-				return true;
-		*/}
+		}
 		else if (xp == 7 && yp == 8) // check for bottom right corner
 		{
 			x1 = xp - 1; // left
@@ -310,11 +168,7 @@ public class Board {
 			y2 = yp - 1;
 			if (FillCheck.contains(callBlockCoordinate(x2, y2)) == true)
 				return true;
-		/*	x3 = xp - 1; // corner
-			y3 = yp - 1;
-			if (FillCheck.contains(callBlockCoordinate(x3, y3)) == true)
-				return true;
-		*/}
+		}
 		else if (xp == 0 && yp > 0 && yp < 9) // left column
 		{
 			x1 = xp + 1; // right
@@ -325,11 +179,7 @@ public class Board {
 			y2 = yp - 1;
 			if (FillCheck.contains(callBlockCoordinate(x2, y2)) == true)
 				return true;
-		/*	x3 = xp + 1; // bottom corner
-			y3 = yp + 1;
-			if (FillCheck.contains(callBlockCoordinate(x3, y3)) == true)
-				return true;
-		*/	x4 = xp;
+			x4 = xp;
 		y4 = yp + 1; // bottom
 		if (FillCheck.contains(callBlockCoordinate(x4, y4)) == true)
 			return true;
@@ -348,15 +198,7 @@ public class Board {
 			y3 = yp - 1;
 			if (FillCheck.contains(callBlockCoordinate(x3, y3)) == true)
 				return true;
-		/*	x4 = xp - 1; // top left corner
-			y4 = yp - 1;
-			if (FillCheck.contains(callBlockCoordinate(x4, y4)) == true)
-				return true;
-			x5 = xp - 1; // top left corner
-			y5 = yp + 1;
-			if (FillCheck.contains(callBlockCoordinate(x5, y5)) == true)
-				return true;
-		*/}
+			}
 		// possible error
 		else if (xp > 0 && xp < 8 && yp == 0) // top row
 		{
@@ -372,15 +214,7 @@ public class Board {
 			y3 = yp + 1;
 			if (FillCheck.contains(callBlockCoordinate(x3, y3)) == true)
 				return true;
-	/*		x4 = xp + 1; // bottom right corner
-			y4 = yp + 1;
-			if (FillCheck.contains(callBlockCoordinate(x4, y4)) == true)
-				return true;
-			x5 = xp - 1; // bottom right corner
-			y5 = yp + 1;
-			if (FillCheck.contains(callBlockCoordinate(x5, y5)) == true)
-				return true;
-		*/}
+			}
 		else if (xp > 0 && xp < 8 && yp == 8) // bottom row
 		{
 			x1 = xp + 1; // right
@@ -414,23 +248,7 @@ public class Board {
 			y4 = yp + 1; // bottom
 			if (FillCheck.contains(callBlockCoordinate(x4, y4)) == true)
 				return true;
-			/*x5 = xp + 1; // top right corner
-			y5 = yp - 1;
-			if (FillCheck.contains(callBlockCoordinate(x5, y5)) == true)
-				return true;
-			x6 = xp - 1; // top left corner
-			y6 = yp - 1;
-			if (FillCheck.contains(callBlockCoordinate(x6, y6)) == true)
-				return true;
-			x7 = xp + 1; // bottom right corner
-			y7 = yp + 1;
-			if (FillCheck.contains(callBlockCoordinate(x7, y7)) == true)
-				return true;
-			x8 = xp - 1; // bottom left corner
-			y8 = yp + 1;
-			if (FillCheck.contains(callBlockCoordinate(x8, y8)) == true)
-				return true;
-		*/}
+			}
 		return allow;
 	}// end of callAllowPlaceBlock
 	public void callSelectBlockIndex()
@@ -1396,7 +1214,7 @@ public class Board {
 		jb.get(71).addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				blk = 71;
-				System.out.println("Block 71 pressed");
+				System.out.println("Block 72 pressed");
 				if (FillCheck.contains(blk) == false) {
 					if (callAllowPlaceBlock(7, 8) == true)
 						callSelectBlock(blk);
@@ -1510,22 +1328,36 @@ public class Board {
 	   }
 	   return meep;
 	 } // end of getmeeple()
-	public Board()
-	{
+	public Board(){
+	      Random random = new Random();//randomize position of the labels
+	      JPanel _jp3 = new JPanel();
+	      Color[] colors = {Color.black, Color.blue, Color.green, Color.red, Color.yellow};
+		_jp3.setPreferredSize(new Dimension(_jp3_w, _jp3_h));
+	      _jp3.setLayout(null);
+
+	      MyMouseAdapter myMouseAdapter = new MyMouseAdapter();
+
+	      for (int i = 0; i < colors.length; i++) {
+	         Color c = colors[i];
+	         JLabel label = new JLabel("Meeple " + (i + 1));
+	         label.setSize(label.getPreferredSize());
+	         label.setBackground(c);
+	         label.setOpaque(true);
+	         int x = random.nextInt(_jp3_w + 20) - 10;
+	         int y = random.nextInt(_jp3_h + 20) - 10;
+	         label.setLocation(x, y);
+	         label.addMouseListener(myMouseAdapter);
+	         label.addMouseMotionListener(myMouseAdapter);
+	         _jp3.add(label);
+	      }	
 		JFrame _jf = new JFrame("Carcassone"); // window frame
 		JFrame _jf2 = new JFrame(""); // window2 frame
-		JFrame _jf3 = new JFrame(""); //window3 frame
+	    JFrame _jf3 = new JFrame("Meeples");
 		JPanel _jp = new JPanel();
 		JPanel _jp2 = new JPanel(); // JPanel for window 2
-		JPanel _jp3 = new JPanel(); // JPanel for window3
 		_jp2.add(_jb2); // add jb2 button to jp2 jPanel 2
-		  _jp3.add(_jb3); //  add jb3 to jp3 
-		  _jp3.add(_jb4); //  add jb3 to jp3 
-		  _jp3.add(_jb5); //  add jb3 to jp3 
-		  _jp3.add(_jb6); //  add jb3 to jp3 
-		  _jp3.add(_jb7); //  add jb3 to jp3 
-		  Dimension d3 = new Dimension(); // dimension on window 3
-		  d3.setSize(250, 400); // 900, 800
+		Dimension d3 = new Dimension();
+		d3.setSize(250, 400);
 		Dimension d2 = new Dimension(); // dimension on window 2
 		d2.setSize(250, 250); // 900, 800
 		Dimension d = new Dimension(); // dimension for window 1
@@ -1543,79 +1375,10 @@ public class Board {
 			_jp.add(jb.get(i));
 		{
 		}
-		// end of for loop
-		// jb.get(10).setIcon(new ImageIcon(img));
-		/*
-		 * for(int i=0; i< 72; i = i+1)
-		 * 
-		 * {
-		 * 
-		 * try
-		 * 
-		 * {
-		 * 
-		 * Image img =
-		 * 
-		 * ImageIO.read(getClass().getResource("/images/tile1.jpg"));
-		 * 
-		 * jb.get(i).setIcon(new ImageIcon(img));
-		 * 
-		 * //jb.setIcon(new ImageIcon(img));
-		 * 
-		 * }
-		 * 
-		 * catch (IOException ex) {}
-		 * 
-		 * _jp.add(jb.get(i));
-		 * 
-		 * 
-		 * 
-		 * System.out.println("Added" + i);
-		 * 
-		 * 
-		 * 
-		 * } //end of for loop
-		 */
 		_jp.setLayout(new GridLayout(9, 8)); // 9 rows and 8 columns -> panel
 		// layout
 		_jp2.setLayout(new GridLayout(2, 1)); // layout of panel 2 in window 2
-		 _jp3.setLayout(new GridLayout(2,5)); // layout of panel 3 in window 3
-		/*
-		 * 
-		 * //add tile to viewer
-		 * 
-		 * try
-		 * 
-		 * {
-		 * 
-		 * //randomly select tile
-		 * 
-		 * Image img_exit =
-		 * ImageIO.read(getClass().getResource("/images/tile21.jpg")); //view
-		 * tile
-		 * 
-		 * 
-		 * 
-		 * _ImageAddress = "/images/tile21.jpg";
-		 * 
-		 * System.out.println(_ImageAddress);
-		 * 
-		 * 
-		 * 
-		 * exit_bt.setIcon(new ImageIcon(img_exit));
-		 * 
-		 * }
-		 * 
-		 * catch (IOException ex) {
-		 * 
-		 * }
-		 */
 		_jp2.add(exit_bt);
-		 _jp3.add(exit_bt2);
-		 _jp3.add(exit_bt3);
-		 _jp3.add(exit_bt4);
-		 _jp3.add(exit_bt5);
-		 _jp3.add(exit_bt6);
 		// end of tile to viewer
 		_jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_jf.add(_jp); // add panel to frame
@@ -1626,10 +1389,38 @@ public class Board {
 		_jf2.add(_jp2); // add panel to frame
 		_jf2.setVisible(true); // set window visible
 		  //window 3
-		  _jf3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		  _jf3.add(_jp3); // add panel to frame
-		  _jf3.setVisible(true); // set window visible
+	      _jf3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      _jf3.add(_jp3);
+	      _jf3.setLocationByPlatform(true);
+	      _jf3.setVisible(true);
 		  _jf3.setLocation(1120, 00);
+		  class MyMouseAdapter extends MouseAdapter {
+			   private Point initialLoc;
+			   private Point initialLocOnScreen;
+			   @Override
+			   public void mousePressed(MouseEvent e) {
+			      Component comp = (Component)e.getSource();
+			      initialLoc = comp.getLocation();
+			      initialLocOnScreen = e.getLocationOnScreen();
+			   }
+			   @Override
+			   public void mouseReleased(MouseEvent e) {
+			      Component comp = (Component)e.getSource();
+			      Point locOnScreen = e.getLocationOnScreen();
+			      int x = locOnScreen.x - initialLocOnScreen.x + initialLoc.x;
+			      int y = locOnScreen.y - initialLocOnScreen.y + initialLoc.y;
+			      comp.setLocation(x, y);
+			   }
+			   @Override
+			   public void mouseDragged(MouseEvent e) {
+			      Component comp = (Component)e.getSource();
+			      Point locOnScreen = e.getLocationOnScreen();
+
+			      int x = locOnScreen.x - initialLocOnScreen.x + initialLoc.x;
+			      int y = locOnScreen.y - initialLocOnScreen.y + initialLoc.y;
+			      comp.setLocation(x, y);
+			   }
+			}
 	} // end of constructor Board()
 	public void setTile(int idx, int tile_no)
 	{
@@ -1750,43 +1541,6 @@ public class Board {
 									// final variable
 			// set icon once button pressed.
 			// breakpoint
-			/*
-			 * 
-			 * jb.get(1).addActionListener(new ActionListener() {
-			 * 
-			 * public void actionPerformed(ActionEvent e) {
-			 * 
-			 * if (true) //if something present in _ImageAddress
-			 * 
-			 * {
-			 * 
-			 * try
-			 * 
-			 * {
-			 * 
-			 * //randomly select tile
-			 * 
-			 * Image img_last =
-			 * ImageIO.read(getClass().getResource(_ImageAddress));
-			 * 
-			 * System.out.println("In action method");
-			 * 
-			 * jb.get(idd+1).setIcon(new ImageIcon(img_last));
-			 * 
-			 * }
-			 * 
-			 * catch (IOException ex) {
-			 * 
-			 * }
-			 * 
-			 * }
-			 * 
-			 * }
-			 * 
-			 * });
-			 */
-			// img = ImageIO.read(getClass().getResource(_ImageAddress));
-			// jb.get(idx + 1).setIcon(new ImageIcon(img));
 		}
 		catch (IOException ex) {
 		}
