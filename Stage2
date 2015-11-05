@@ -1343,8 +1343,8 @@ public class Board {
 	         label.setSize(label.getPreferredSize());
 	         label.setBackground(c);
 	         label.setOpaque(true);
-	         int x = random.nextInt(_jp3_w + 20) - 10;
-	         int y = random.nextInt(_jp3_h + 20) - 10;
+	         int x = random.nextInt(_jp3_w);
+	         int y = random.nextInt(_jp3_h);
 	         label.setLocation(x, y);
 	         label.addMouseListener(myMouseAdapter);
 	         label.addMouseMotionListener(myMouseAdapter);
