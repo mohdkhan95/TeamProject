@@ -1,4 +1,4 @@
-package Stage2;
+//package car;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -48,7 +48,7 @@ public class Board {
 	JButton exit_bt = new JButton(); // add tile button to window 2
 	public boolean marker = false;
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 	    Board Board;
 		Board = new Board();
 		Board.drawTile(Board.callBlockCoordinate(3, 3), 1);
@@ -121,14 +121,30 @@ public class Board {
 		return 0;
 	}
 // end of draw button action
+	
+
+	
+	
+	
 	public void callSelectBlock(int block_no)
 	{
 		final int blk = block_no;
 		try
 		{
 			// randomly select tile
+			/*
 			Image img_last = ImageIO
-					.read(getClass().getResource(_ImageAddress));
+					.read(getClass().getResource(_ImageAddress));*/
+			
+			BufferedImage img_last = ImageIO.read(getClass().getResource(_ImageAddress));
+			//img_last = rotate90ToRight(img_last);
+			
+			//return rotated image
+			//Image new_rotated_image = ;
+			
+			//BufferedImage img_to_rotate; //= img_last;
+			//img_to_rotate.
+			
 			System.out.println(">>In action method");
 			jb.get(blk).setIcon(new ImageIcon(img_last));
 			// callSelectBlockIndex();
@@ -138,6 +154,39 @@ public class Board {
 		catch (IOException ex) {
 		}
 	}// end of callSelectBlock(int block_no)
+	
+	//return rotated tile
+	public void callSelectBlockRotate(int block_no, int rotate_times)
+	{
+		final int blk = block_no;
+		try
+		{
+			// selected tile
+			BufferedImage img_last = ImageIO.read(getClass().getResource(_ImageAddress));
+			
+			for(int i = 0; i<rotate_times; i++)
+			{
+				img_last = rotate90ToRight(img_last);
+			}
+			
+			System.out.println(">>In action method");
+			jb.get(blk).setIcon(new ImageIcon(img_last));
+			// callSelectBlockIndex();
+			System.out.println(blk);
+			//FillCheck.add(blk);
+		}
+		catch (IOException ex) {
+		}
+	}// end of callSelectBlockRotate(int block_no)
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// returns if placing tile in a particular block is allowed
 	public boolean callAllowPlaceBlock(int xp, int yp)
 	{
@@ -277,6 +326,7 @@ public class Board {
 		int y = 0;
 		// block1
 		jb.get(0).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 0;
 				System.out.println("Block 1 pressed");
@@ -288,11 +338,18 @@ public class Board {
 				else
 				{
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block2
 		jb.get(1).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 1;
 				System.out.println("Block 2 pressed");
@@ -304,11 +361,18 @@ public class Board {
 				else
 				{
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block3
 		jb.get(2).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 2;
 				System.out.println("Block 3 pressed");
@@ -320,11 +384,18 @@ public class Board {
 				else
 				{
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block4
 		jb.get(3).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 3;
 				System.out.println("Block 4 pressed");
@@ -336,11 +407,18 @@ public class Board {
 				else
 				{
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block5
 		jb.get(4).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 4;
 				System.out.println("Block 5 pressed");
@@ -352,11 +430,18 @@ public class Board {
 				else
 				{
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block6
 		jb.get(5).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 5;
 				System.out.println("Block 6 pressed");
@@ -368,11 +453,18 @@ public class Board {
 				else
 				{
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block7
 		jb.get(6).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 6;
 				System.out.println("Block 7 pressed");
@@ -384,11 +476,19 @@ public class Board {
 				else
 				{
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block8
 		jb.get(7).addActionListener(new ActionListener() {
+			
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 7;
 				System.out.println("Block 8 pressed");
@@ -400,6 +500,12 @@ public class Board {
 				else
 				{
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 
@@ -408,6 +514,7 @@ public class Board {
 		// block9
 
 		jb.get(8).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 8;
 				System.out.println("Block 9 pressed");
@@ -416,11 +523,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block10
 		jb.get(9).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 9;
 				System.out.println("Block 10 pressed");
@@ -429,11 +543,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block11
 		jb.get(10).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 10;
 				System.out.println("Block 11 pressed");
@@ -442,11 +563,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block12
 		jb.get(11).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 11;
 				System.out.println("Block 12 pressed");
@@ -455,11 +583,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block13
 		jb.get(12).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 12;
 				System.out.println("Block 13 pressed");
@@ -468,11 +603,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block14
 		jb.get(13).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 13;
 				System.out.println("Block 14 pressed");
@@ -481,11 +623,19 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block15
 		jb.get(14).addActionListener(new ActionListener() {
+			
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 14;
 				System.out.println("Block 15 pressed");
@@ -494,11 +644,19 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block16
 		jb.get(15).addActionListener(new ActionListener() {
+			
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 15;
 				System.out.println("Block 16 pressed");
@@ -509,11 +667,20 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+				
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
+				
 				}
 			}
 		});
 		// block17
 		jb.get(16).addActionListener(new ActionListener() {
+			
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 16;
 				System.out.println("Block 17 pressed");
@@ -522,11 +689,19 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block18
 		jb.get(17).addActionListener(new ActionListener() {
+			
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 17;
 				System.out.println("Block 18 pressed");
@@ -535,11 +710,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block19
 		jb.get(18).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 18;
 				System.out.println("Block 19 pressed");
@@ -548,11 +730,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block20
 		jb.get(19).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 19;
 				System.out.println("Block 20 pressed");
@@ -561,11 +750,19 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block21
 		jb.get(20).addActionListener(new ActionListener() {
+			
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 20;
 				System.out.println("Block 21 pressed");
@@ -574,11 +771,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block22
 		jb.get(21).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 21;
 				System.out.println("Block 22 pressed");
@@ -587,11 +791,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block23
 		jb.get(22).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 22;
 				System.out.println("Block 23 pressed");
@@ -600,11 +811,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block24
 		jb.get(23).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 23;
 				System.out.println("Block 24 pressed");
@@ -613,11 +831,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block25
 		jb.get(24).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 24;
 				System.out.println("Block 24 pressed");
@@ -626,11 +851,19 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block26
 		jb.get(25).addActionListener(new ActionListener() {
+			
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 25;
 				System.out.println("Block 26 pressed");
@@ -639,13 +872,21 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block27
 		jb.get(26).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 26;
+				
 				System.out.println("Block 27 pressed");
 				System.out.println(callAllowPlaceBlock(4, 3));
 				System.out.println(callBlockCoordinate(4, 3));
@@ -654,7 +895,14 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
-					}
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
+				}
+				
 			}
 		});
 		// block28
@@ -672,6 +920,7 @@ public class Board {
 		});
 		// block29
 		jb.get(28).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 28;
 				System.out.println("Block 29 pressed");
@@ -680,11 +929,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block30
 		jb.get(29).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 29;
 				System.out.println("Block 30 pressed");
@@ -693,11 +949,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block31
 		jb.get(30).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 30;
 				System.out.println("Block 31 pressed");
@@ -706,11 +969,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block32
 		jb.get(31).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 31;
 				System.out.println("Block 32 pressed");
@@ -719,11 +989,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block33
 		jb.get(32).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 32;
 				System.out.println("Block 33 pressed");
@@ -732,11 +1009,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block34
 		jb.get(33).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 33;
 				System.out.println("Block 34 pressed");
@@ -745,11 +1029,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block35
 		jb.get(34).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 34;
 				System.out.println("Block 35 pressed");
@@ -758,11 +1049,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block36
 		jb.get(35).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 35;
 				System.out.println("Block 36 pressed");
@@ -771,11 +1069,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block37
 		jb.get(36).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 36;
 				System.out.println("Block 37 pressed");
@@ -784,11 +1089,19 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block38
 		jb.get(37).addActionListener(new ActionListener() {
+			
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 37;
 				System.out.println("Block 38 pressed");
@@ -797,11 +1110,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block39
 		jb.get(38).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 38;
 				System.out.println("Block 39 pressed");
@@ -810,11 +1130,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block40
 		jb.get(39).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 39;
 				System.out.println("Block 40 pressed");
@@ -823,11 +1150,18 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
 		// block41
 		jb.get(40).addActionListener(new ActionListener() {
+			int count = 1;
 			public void actionPerformed(ActionEvent e) {
 				blk = 40;
 				System.out.println("Block 41 pressed");
@@ -836,6 +1170,12 @@ public class Board {
 						callSelectBlock(blk);
 				} else {
 					System.out.println("Tile already exists!");
+					
+					if(count==5)
+						count = 1;
+					System.out.println("Rotated " + (count*90) + " degrees.");
+					callSelectBlockRotate(blk, count);
+					count++;
 				}
 			}
 		});
@@ -1243,6 +1583,9 @@ public class Board {
 			}
 		});
 	}// end of callSelectBlockIndex()
+	
+	
+	//start of rotation method
 	public BufferedImage rotate90ToRight( BufferedImage img_last ){
 		int width = img_last.getWidth();
 		int height = img_last.getHeight();
@@ -1254,7 +1597,11 @@ public class Board {
 			}
 		}
 		return returnImage;
-	}
+	} //end of buffered image
+	
+	
+	
+	
 	public String getTile(int index) // return address of given tile index
 	{
 		String ret = "";
@@ -1593,3 +1940,4 @@ public class Board {
 		   }
 		}
 } // end of class
+
